@@ -375,7 +375,9 @@
 				09110A4219805F4800D175E4 /* Products */,
 				71E7CDE1C6A8345F6C70E7D1 /* Pods */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		09110A4219805F4800D175E4 /* Products */ = {
 			isa = PBXGroup;
