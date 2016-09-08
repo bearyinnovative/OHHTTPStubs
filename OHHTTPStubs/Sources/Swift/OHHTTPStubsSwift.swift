@@ -53,7 +53,7 @@ public func fixture(filePath: String, status: Int32 = 200, headers: [NSObject: A
  * - Returns: The opaque `OHHTTPStubsDescriptor` that uniquely identifies the stub
  *            and can be later used to remove it with `removeStub:`
  */
-public func stub(condition: OHHTTPStubsTestBlock, response: OHHTTPStubsResponseBlock) -> OHHTTPStubsDescriptor {
+public func stub(condition: @escaping OHHTTPStubsTestBlock, response: @escaping OHHTTPStubsResponseBlock) -> OHHTTPStubsDescriptor {
     return OHHTTPStubs.stubRequests(passingTest: condition, withStubResponse: response)
 }
 
@@ -241,7 +241,7 @@ public func hasHeaderNamed(name: String, value: String) -> OHHTTPStubsTestBlock 
  *
  * - Returns: a matcher (`OHHTTPStubsTestBlock`) that succeeds if either of the given matchers succeeds
  */
-public func || (lhs: OHHTTPStubsTestBlock, rhs: OHHTTPStubsTestBlock) -> OHHTTPStubsTestBlock {
+public func || (lhs: @escaping OHHTTPStubsTestBlock, rhs: @escaping OHHTTPStubsTestBlock) -> OHHTTPStubsTestBlock {
     return { req in lhs(req) || rhs(req) }
 }
 
@@ -253,7 +253,7 @@ public func || (lhs: OHHTTPStubsTestBlock, rhs: OHHTTPStubsTestBlock) -> OHHTTPS
  *
  * - Returns: a matcher (`OHHTTPStubsTestBlock`) that only succeeds if both of the given matchers succeeds
  */
-public func && (lhs: OHHTTPStubsTestBlock, rhs: OHHTTPStubsTestBlock) -> OHHTTPStubsTestBlock {
+public func && (lhs: @escaping OHHTTPStubsTestBlock, rhs: @escaping OHHTTPStubsTestBlock) -> OHHTTPStubsTestBlock {
     return { req in lhs(req) && rhs(req) }
 }
 
@@ -264,6 +264,6 @@ public func && (lhs: OHHTTPStubsTestBlock, rhs: OHHTTPStubsTestBlock) -> OHHTTPS
  *
  * - Returns: a matcher (OHHTTPStubsTestBlock) that only succeeds if the expr matcher fails
  */
-public prefix func ! (expr: OHHTTPStubsTestBlock) -> OHHTTPStubsTestBlock {
+public prefix func ! (expr: @escaping OHHTTPStubsTestBlock) -> OHHTTPStubsTestBlock {
     return { req in !expr(req) }
 }
